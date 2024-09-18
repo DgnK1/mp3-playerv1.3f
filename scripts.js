@@ -173,12 +173,12 @@ function formatTime(seconds) {
 function toggleMute() {
     if (Audio.muted) {
         Audio.muted = false;
-        muteButton.innerHTML = 'volume_off';  // Icon for unmuted state
-        volumeSlider.value = Audio.volume;   // Restore previous volume level
+        muteButton.innerHTML = 'volume_off'; 
+        volumeSlider.value = Audio.volume;   
     } else {
         Audio.muted = true;
-        muteButton.innerHTML = 'volume_mute';  // Icon for muted state
-        volumeSlider.value = 0;   // Set volume slider to 0
+        muteButton.innerHTML = 'volume_mute';  
+        volumeSlider.value = 0;  
     }
 }
 
@@ -191,9 +191,11 @@ volumeSlider.addEventListener('input', function() {
     }
 });
 
+
+// Log in Modal
 function openModal() {
     modal.style.display = 'block';
-    overlay.style.display = 'block'; // Show overlay
+    overlay.style.display = 'block';
     setTimeout(() => {
         modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
         document.querySelector('.modal-content').style.opacity = '1';
@@ -201,30 +203,25 @@ function openModal() {
 }
 
 function closeModal() {
-    modal.style.backgroundColor = 'rgba(0,0,0,0)'; // Optional: To clear any background color
-    document.querySelector('.modal-content').style.opacity = '0'; // Fade out the content
+    modal.style.backgroundColor = 'rgba(0,0,0,0)'; 
+    document.querySelector('.modal-content').style.opacity = '0'; 
     
     setTimeout(() => {
-        modal.style.display = 'none'; // Hide the modal
-        overlay.style.display = 'none'; // Hide the overlay
-    }, 300); // Ensure this matches the opacity transition duration
+        modal.style.display = 'none'; 
+        overlay.style.display = 'none'; 
+    }, 300); 
 }
 
 function closeModalOnly() {
     const modal = document.getElementById('id01');
     const overlay = document.getElementById('overlay');
     const form = document.getElementById('toForm');
-
-    // Optional: Set background color and opacity for animation
-    modal.style.backgroundColor = 'rgba(0,0,0,0)';
-    document.querySelector('.modal-content').style.opacity = '0';
-
-    // Hide the modal and overlay after the transition
+   
     setTimeout(() => {
-        modal.style.display = 'none'; // Hide the modal
-        overlay.style.display = 'block'; // Hide the overlay
+        modal.style.display = 'none'; 
+        overlay.style.display = 'block'; 
         form.style.display = 'block';
-    }, 300); // Ensure this matches your CSS transition duration
+    }, 300); 
 }
 
 
@@ -236,29 +233,26 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
 });
 
 function handleLoginSuccess() {
-    // Hide the form and display the content
+    
     document.getElementById('toForm').style.display = 'none';
     document.querySelector('.content').classList.remove('hidden');
-    closeModal(); // Close the modal
+    closeModal(); 
 }
 
-
-// Function to switch to sign-up form
 function showSignUp() {
     document.getElementById('login-form').style.display = 'none';
     document.getElementById('sign-up-form').style.display = 'block';
 }
 
-// Function to switch to login form
 function showLogin() {
     document.getElementById('sign-up-form').style.display = 'none';
     document.getElementById('login-form').style.display = 'block';
 }
 
-// Function to sign up a new user
 function signUp() {
     const username = document.getElementById('new-username').value;
     const password = document.getElementById('new-password').value;
+
     
     if (username && password) {
         localStorage.setItem('username', username);
@@ -270,7 +264,6 @@ function signUp() {
     }
 }
 
-// Function to log in a user
 function login() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
