@@ -13,6 +13,7 @@ const content = document.querySelector(".content"),
     Shuffle = content.querySelector("#shuffle"),
     volumeSlider = document.getElementById('volume-slider'),
     muteButton = document.getElementById('mute'),
+    form = document.getElementById('toForm'),
     modal = document.getElementById('id01'),
     overlay = document.getElementById('overlay'); // Ensure there's an overlay element
 
@@ -212,6 +213,7 @@ function closeModal() {
 function closeModalOnly() {
     const modal = document.getElementById('id01');
     const overlay = document.getElementById('overlay');
+    const form = document.getElementById('toForm');
 
     // Optional: Set background color and opacity for animation
     modal.style.backgroundColor = 'rgba(0,0,0,0)';
@@ -220,7 +222,8 @@ function closeModalOnly() {
     // Hide the modal and overlay after the transition
     setTimeout(() => {
         modal.style.display = 'none'; // Hide the modal
-        overlay.style.display = 'none'; // Hide the overlay
+        overlay.style.display = 'block'; // Hide the overlay
+        form.style.display = 'block';
     }, 300); // Ensure this matches your CSS transition duration
 }
 
