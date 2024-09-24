@@ -74,31 +74,48 @@ function prevSong() {
     playSong();
 }
 
-Audio.addEventListener("loadeddata", () => {
-    let finalTimeData = content.querySelector(".final");
-    let AudioDuration = Audio.duration;
-    let finalMinutes = Math.floor(AudioDuration / 60);
-    let finalSeconds = Math.floor(AudioDuration % 60);
-    finalTimeData.innerText = `${finalMinutes}:${finalSeconds < 10 ? '0' : ''}${finalSeconds}`;
-});
-
-Audio.addEventListener("timeupdate", (e) => {
-    let initialTime = e.target.currentTime;
-    let finalTime = e.target.duration;
+Audio.addEventListener("timeupdate", (e)=>{
+    const initialTime = e.target.currentTime;
+    const finalTime = e.target.duration;
     let BarWidth = (initialTime / finalTime) * 100;
-    progressBar.style.width = `${BarWidth}%`;
+    progressBar.style.width = BarWidth+"%";
 
-    let currentMinutes = Math.floor(initialTime / 60);
-    let currentSeconds = Math.floor(initialTime % 60);
+    progressDetails.addEventListener("click", (e)=>{
+        let progressValue = progressDetails.clientWidth;
+        let clickedOffsetX = e.offsetX;
+        let MusicDuration = Audio.duration;
+
+        Audio.currentTime = (clickedOffsetX / progressValue) * MusicDuration;
+    });
+
+    //timer-logic
+    Audio.addEventListener("loadeddata", ()=>{
+        let finalTimeData = content.querySelector(".final");
+
+        //update-finalDuration
+        let AudioDuration = Audio.duration;
+        let finalMinutes = Math.floor(AudioDuration / 60);
+        let finalSeconds = Math.floor(AudioDuration % 60);
+        if(finalSeconds < 10){
+            finalSeconds = "0"+finalSeconds;
+        }
+        finalTimeData.innerText = finalMinutes+":"+finalSeconds;
+    });
+
+    //update current duration
     let currentTimeData = content.querySelector(".current");
-    currentTimeData.innerText = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
-});
+    let CurrentTime = Audio.currentTime;
+    let currentMinutes = Math.floor(CurrentTime / 60);
+    let currentSeconds = Math.floor(CurrentTime % 60);
+    if(currentSeconds < 10){
+    currentSeconds = "0"+currentSeconds;
+    }
+    currentTimeData.innerText = currentMinutes+":"+currentSeconds
 
-progressDetails.addEventListener("click", (e) => {
-    let progressValue = progressDetails.clientWidth;
-    let clickedOffsetX = e.offsetX;
-    let MusicDuration = Audio.duration;
-    Audio.currentTime = (clickedOffsetX / progressValue) * MusicDuration;
+    //repeat button logic
+    repeatBtn.addEventListener("click", ()=>{
+        Audio.currentTime = 0;
+    });
 });
 
 Shuffle.addEventListener("click", () => {
@@ -173,12 +190,12 @@ function formatTime(seconds) {
 function toggleMute() {
     if (Audio.muted) {
         Audio.muted = false;
-        muteButton.innerHTML = 'volume_off'; 
+        muteButton.innerHTML = 'volume_off';  
         volumeSlider.value = Audio.volume;   
     } else {
         Audio.muted = true;
         muteButton.innerHTML = 'volume_mute';  
-        volumeSlider.value = 0;  
+        volumeSlider.value = 0;   
     }
 }
 
@@ -191,11 +208,9 @@ volumeSlider.addEventListener('input', function() {
     }
 });
 
-
-// Log in Modal
 function openModal() {
     modal.style.display = 'block';
-    overlay.style.display = 'block';
+    overlay.style.display = 'block'; 
     setTimeout(() => {
         modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
         document.querySelector('.modal-content').style.opacity = '1';
@@ -209,19 +224,14 @@ function closeModal() {
     setTimeout(() => {
         modal.style.display = 'none'; 
         overlay.style.display = 'none'; 
+        form.style.display = 'none';
     }, 300); 
 }
 
 function closeModalOnly() {
-    const modal = document.getElementById('id01');
-    const overlay = document.getElementById('overlay');
-    const form = document.getElementById('toForm');
-   
-    setTimeout(() => {
-        modal.style.display = 'none'; 
-        overlay.style.display = 'block'; 
-        form.style.display = 'block';
-    }, 300); 
+    modal.style.display = 'none';  
+    overlay.style.display = 'block'; 
+    form.style.display = 'block'; 
 }
 
 
@@ -251,27 +261,29 @@ function showLogin() {
 
 function signUp() {
     const username = document.getElementById('new-username').value;
+    const email = document.getElementById('new-email').value;
     const password = document.getElementById('new-password').value;
-
     
     if (username && password) {
         localStorage.setItem('username', username);
+        localStorage.setItem('email', email);
         localStorage.setItem('password', password);
         alert('Sign Up successful! You can now log in.');
         showLogin();
     } else {
-        alert('Please enter both username and password.');
+        alert('Please fill in all the fields.');
     }
 }
 
 function login() {
-    const username = document.getElementById('login-username').value;
+    const userInput = document.getElementById('login-username-email').value;
     const password = document.getElementById('login-password').value;
     
     const storedUsername = localStorage.getItem('username');
+    const storedEmail = localStorage.getItem('email');
     const storedPassword = localStorage.getItem('password');
     
-    if (username === storedUsername && password === storedPassword) {
+    if ((userInput === storedUsername || userInput === storedEmail) && password === storedPassword) {
         alert('Login successful!');
         closeModal();
     } else {
