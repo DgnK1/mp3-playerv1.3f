@@ -84,7 +84,7 @@ body {
 
 .progress-details {
     width: 100%;
-    height: 6px;
+    height: 10px;
     border-radius: 15px;
     background-color: #303030;
 }
@@ -93,15 +93,15 @@ body {
     width: 0%;
     height: inherit;
     border-radius: inherit;
-    background-color: #0987f6;
+    background: linear-gradient(356deg, rgb(199, 199, 199), rgb(30, 20, 236));
     cursor: pointer;
     position: relative;
 }
 
 .progress-bar span {
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 24px;
+    height: 24px;
     background-color: #0987f6;
     border-radius: inherit;
     transform: translateY(-25%);
@@ -320,41 +320,22 @@ input[type="range"]:hover::-webkit-slider-thumb {
 }
 
 #toForm{
-    position: fixed;
+    position: fixed; 
     top: 50%; 
-    left: 50%; 
+    left: 50%;
     transform: translate(-50%, -50%); 
-    z-index: 1000;
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
+    z-index: 1000; 
     flex-direction: column;  
-    align-items: center;
-    justify-content: center;
     border-radius: 5px;
-    border: 1px solid #ececec;   
+    border: 1px solid #ececec;
+    padding: 20px 10px;    
     transition: all ease 0.3s;
     visibility: visible;
-}
-
-#toForm .form-content {
-    background: rgb(0, 0, 0);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px;
 }
 
 .logo img {
     max-width: 180px;
     max-height: 40px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    object-fit: contain;
-    object-position: center;
 }
 
 
@@ -371,12 +352,10 @@ input[type=text], input[type=password] {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     font-weight: bold;
-    border-radius: 10%;
     padding: 14px 20px;
-    margin: 8px 0;
+    border-radius: 10%;
     border: none; 
     cursor: pointer;
-    width: 100%;
 }
 
 #submit{
@@ -420,15 +399,15 @@ span.psw {
 }
 
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 50%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4); /* Black with opacity */
+    background-color: rgba(0,0,0,0.4); 
 }
 
 .modal-content {
@@ -442,7 +421,7 @@ span.psw {
 }
 
 .cancelbtn {
-    background-color: #f44336; /* Red */
+    background-color: #f44336;
     color: white;
 }
 
@@ -495,7 +474,6 @@ span.psw {
     to {transform: scale(1)}
 }
 
-/* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
         display: block;
