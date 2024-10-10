@@ -14,10 +14,17 @@ body {
     background-color: #040013;
 }
 
+:root{
+    --blue-gradient: linear-gradient(356deg, rgb(36, 36, 36), rgb(7, 4, 58));
+    --blue-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+    -6px -6px 10px -1px rgba(11, 1, 49, 0.7);
+    --gray-shadow: 6px 6px 10px -1px rgba(255, 255, 255, 0.15),
+    -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+}
+
 .content {
-    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
-        -6px -6px 10px -1px rgba(11, 1, 49, 0.7);
-    background: linear-gradient(356deg, rgb(36, 36, 36), rgb(7, 4, 58));
+    box-shadow: var(--blue-shadow);
+    background: var(--blue-gradient);
     height: 650px;
     width: 400px;
     padding: 25px 25px;
@@ -46,8 +53,7 @@ body {
 .music-image {
     width: 230px;
     height: 230px;
-    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
-        -6px -6px 10px -1px rgba(7, 4, 58, 0.7);
+    box-shadow: var(--blue-shadow);
     border-radius: 50%;
     margin-top: 25px;
     padding: 7px;
@@ -134,8 +140,7 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    box-shadow: 6px 6px 10px -1px rgba(255, 255, 255, 0.15),
-        -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+    box-shadow: var(--gray-shadow);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,8 +148,7 @@ body {
 }
 
 .control-btn span:active {
-    box-shadow: inset 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
-        inset -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+    box-shadow: var(--blue-shadow);
 }
 
 .volume-bar {
@@ -172,8 +176,7 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    box-shadow: 6px 6px 10px -1px rgba(255, 255, 255, 0.15),
-                -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+    box-shadow: var(--gray-shadow);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,7 +254,7 @@ input[type="range"]:hover::-webkit-slider-thumb {
 }
 
 #track-list-container::-webkit-scrollbar-thumb {
-    background: linear-gradient(356deg, rgb(36, 36, 36), rgb(7, 4, 58));
+    background: var(--blue-gradient);
     border-radius: 100px;
 }
 
@@ -319,85 +322,6 @@ input[type="range"]:hover::-webkit-slider-thumb {
     z-index: 1001;
 }
 
-#toForm{
-    position: fixed; 
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    z-index: 1000; 
-    flex-direction: column;  
-    border-radius: 5px;
-    border: 1px solid #ececec;
-    padding: 20px 10px;    
-    transition: all ease 0.3s;
-    visibility: visible;
-}
-
-.logo img {
-    max-width: 180px;
-    max-height: 40px;
-}
-
-
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-#logIn{
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    padding: 14px 20px;
-    border-radius: 10%;
-    border: none; 
-    cursor: pointer;
-}
-
-#submit{
-    background-color: #000000;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none; 
-    cursor: pointer;
-    width: 100%;
-}
-
-h2{
-    color: white;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    border-radius: 10%;
-    background-color: #f44336;
-}
-
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-    position: relative;
-}
-
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
-span.psw {
-    float: right;
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -416,17 +340,38 @@ span.psw {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.cancelbtn {
-    background-color: #f44336;
-    color: white;
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
-.container {
-    padding: 16px;
+.music-player-header {
+    position: absolute;
+    margin-top: -100px;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logout-button {
+    background-color: rgb(7, 4, 58);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.logout-button:hover {
+    background-color: #ff3c3c;
 }
 
 /* Style for Log In Button */
@@ -442,6 +387,11 @@ span.psw {
 
 .logInButton:hover {
     background-color: #6e6e6e; 
+}
+
+/* Style for Sign up Button */
+#sign-up-form{
+    display: none;
 }
 
 .signUpButton {
@@ -482,4 +432,205 @@ span.psw {
   .cancelbtn {
         width: 100%;
   }
+}
+
+@media screen and (max-width:1280px){
+    .music-player-header{
+        margin-top: -80px;
+    } 
+}
+
+@media screen and (max-width:1024px){
+    .content{
+        background: #040013;
+        box-shadow: none;
+        width: 400px;
+        height: 600px;
+    }
+    .track-list {
+        margin-left: 0px;
+        padding: 0px 0px;
+        font-size: 14px;
+        background: #040013;
+        box-shadow: none;
+    }
+    
+    #track-list-container {
+        width: 500px;
+    }
+
+    .song-duration{
+        display: none;
+    }
+
+    .modal{
+        width: 900px;
+    }
+    .music-player-header{
+        margin-top: -10px;
+        margin-left:-50px;
+    }      
+}
+
+@media screen and (max-width:912px){
+    .content{
+        background: #040013;
+        box-shadow: none;
+        width: 400px;
+    }
+    .track-list {
+        margin-left: 0px;
+        padding: 0px 0px;
+        font-size: 14px;
+        background: #040013;
+        box-shadow: none;
+    }
+    
+    #track-list-container {
+        width: 500px;
+    }
+
+    .song-duration{
+        display: none;
+    }
+        
+}
+
+@media screen and (max-width:853px){
+    .content{
+        background: #040013;
+        box-shadow: none;
+        width: 400px;
+    }
+    .track-list {
+        margin-left: 0px;
+        padding: 0px 0px;
+        font-size: 14px;
+        background: #040013;
+        box-shadow: none;
+    }
+    
+    #track-list-container {
+        width: 400px;
+    }
+
+    .song-duration{
+        display: none;
+    }
+    .music-player-header{
+        margin-top: -70px;
+        margin-left: -20px;
+    }    
+}
+
+@media screen and (max-width:820px){
+    .content{
+        background: #040013;
+        box-shadow: none;
+    }
+    .track-list {
+        margin-left: 0px;
+        padding: 0px 0px;
+        font-size: 14px;
+        background: #040013;
+        box-shadow: none;
+    }
+    
+    #track-list-container {
+        width: 400px;
+    }
+
+    .song-duration{
+        display: none;
+    }
+
+    .modal{
+        width: 800px;
+    }
+        
+}
+
+@media screen and (max-width:768px){
+    .content{
+        background: #040013;
+        box-shadow: none;
+    }
+    .track-list {
+        margin-left: 0px;
+        padding: 0px 0px;
+        font-size: 14px;
+        background: #040013;
+        box-shadow: none;
+    }
+    
+    #track-list-container {
+        width: 400px;
+    }
+
+    .song-duration{
+        display: none;
+    }
+        
+}
+
+@media screen and (max-width:712px){
+    .modal{
+        width: 800px;
+    }
+
+    #volume-slider{
+        width: 80px;
+        margin-left: 20px;
+    }
+}
+
+@media screen and (max-width:540px){
+    .track-list{
+        display: none;
+    }
+    .content {
+        box-shadow: none;
+        background: #040013;
+    }
+    .modal{
+        width: 500px;
+    }       
+}
+
+@media screen and (max-width:430px){
+    .track-list{
+        display: none;
+    }
+    .content {
+        box-shadow: none;
+        background: #040013;
+    }        
+}
+
+@media screen and (max-width:414px){
+    .track-list{
+        display: none;
+    }
+    .content {
+        box-shadow: none;
+        background: #040013;
+    }   
+}
+
+@media screen and (max-width:375px){
+    .track-list{
+        display: none;
+    }
+    .content {
+        box-shadow: none;
+        background: #040013;
+    }
+     
+    .modal{
+        width: 400px;
+    }
+    .music-player-header{
+        margin-top: -50px;
+        margin-left: 0px;
+    }
 }
