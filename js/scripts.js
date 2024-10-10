@@ -13,7 +13,6 @@ const content = document.querySelector(".content"),
     Shuffle = content.querySelector("#shuffle"),
     volumeSlider = document.getElementById('volume-slider'),
     muteButton = document.getElementById('mute'),
-    form = document.getElementById('toForm'),
     modal = document.getElementById('id01'),
     overlay = document.getElementById('overlay'); // Ensure there's an overlay element
 
@@ -208,34 +207,34 @@ volumeSlider.addEventListener('input', function() {
     }
 });
 
-function openModal() {
-    modal.style.display = 'block';
-    overlay.style.display = 'block'; 
-    setTimeout(() => {
-        modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
-        document.querySelector('.modal-content').style.opacity = '1';
-    }, 10);
-}
+window.addEventListener('DOMContentLoaded', () => {
+
+    document.getElementById('id01').style.display = 'block';
+    
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            alert('You have been logged out.');
+            location.reload();
+        });
+    }
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    const storedUsername = localStorage.getItem('username');
+    if (!storedUsername) {
+        document.getElementById('id01').style.display = 'block';
+    }
+});
+
 
 function closeModal() {
     modal.style.backgroundColor = 'rgba(0,0,0,0)'; 
     document.querySelector('.modal-content').style.opacity = '0'; 
     
-    setTimeout(() => {
-        modal.style.display = 'none'; 
-        overlay.style.display = 'none'; 
-        form.style.display = 'none';
-    }, 300); 
+    modal.style.display = 'none'; 
+    overlay.style.display = 'none'; ;
 }
-
-function closeModalOnly() {
-    modal.style.display = 'none';  
-    overlay.style.display = 'block'; 
-    form.style.display = 'block'; 
-}
-
-
-document.getElementById('logIn').addEventListener('click', openModal);
 
 document.getElementById('login-form').addEventListener('submit', function(e) {
     e.preventDefault(); 
@@ -243,8 +242,6 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
 });
 
 function handleLoginSuccess() {
-    
-    document.getElementById('toForm').style.display = 'none';
     document.querySelector('.content').classList.remove('hidden');
     closeModal(); 
 }
